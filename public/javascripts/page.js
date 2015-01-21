@@ -1,19 +1,20 @@
+// PAGE VARIABLES
+
 var postTitle = document.getElementById('postInput');
 var postContent = document.getElementById('postTextArea');
 var postButton = document.getElementById('addPostDisabled');
 var postList = document.getElementById('postList');
 var saving = false;
 
-postContent.focus();
 
-function isContent (content) {
-	if ( content != "" ) { return true; }
-	else { return false; }
-}
 
+// FUNCTIONS
+
+
+// ADD POST TO PAGE. HANDLES STYLING AND RESETTING INPUTS, AS WELL AS REMOVING A SAVED POST FROM LOCAL STORAGE
 function addPost () {
 
-	if ( isContent(postContent.value) ) {
+	if ( postContent.value != "" ) {
 
 		var article = document.createElement('article');
 		article.classList.add("post");
@@ -41,6 +42,7 @@ function addPost () {
 }
 
 
+// CHECK IS SAVING ALREADY AND THAT THERE IS A POST CONTENT VALUE. RUN SAVE.
 function saveCheck () {
 	if ( ! saving && postContent.value != "" ) {
 		save();
@@ -49,6 +51,7 @@ function saveCheck () {
 }
 
 
+// CHECK FOR POST CONTENT AND ADJUST BUTTON DISABLING ACCORDINGLY. RUN SAVE CHECK, WHICH CALLS SAVE.
 function buttonEnable () {
 	
 	if ( postContent.value != "" ) { postButton.id = "addPostActive"; }
@@ -60,6 +63,7 @@ function buttonEnable () {
 }
 
 
+// SAVE POST EVERY FIVE SECONDS
 function save () {
 
 	var title = postTitle.value;
@@ -71,21 +75,14 @@ function save () {
 }
 
 
+// STOP SAVING
 function stopSave () {
 	clearInterval(saving);
 	saving = false;
 }
 
 
-postButton.addEventListener('click', addPost, false);
-postContent.addEventListener('input', buttonEnable, false);
-postContent.addEventListener('blur', stopSave, false);
-
-
-
-
-
-
+// SAVE ITEM TO LOCAL STORAGE
 function saveItemToLocalStorage (item, keyname) {
     
     localStorage.setItem( keyname, JSON.stringify(item) ); //create new key values and store in localStorage. convert object to string.
@@ -93,6 +90,8 @@ function saveItemToLocalStorage (item, keyname) {
 
 }
 
+
+// GET ITEM FROM LOCAL STORAGE
 function getItemFromLocalStorage (keyname) {
 
         var key,
@@ -107,14 +106,17 @@ function getItemFromLocalStorage (keyname) {
         return key;
     }
 
+
+// DELETE ITEM FROM LOCAL STORAGE
 function removeItemFromLocalStorage (keyname) {
     localStorage.removeItem(keyname);
     console.log("removed");
 }
 
 
-
+// SET FOCUS. GET POST FROM LOCALSTORAGE. RUN BUTTON ENABLE WHICH CALLS SAVE CHECK, WHICH CALLS SAVE.
 function init () {
+	postContent.focus();
 	if ( getItemFromLocalStorage('savedPost') ) {
 		savedPost = getItemFromLocalStorage('savedPost');
 		postTitle.value = savedPost.title;
@@ -125,6 +127,15 @@ function init () {
 }
 
 
+// EVENT LISTENERS
+
+postButton.addEventListener('click', addPost, false);
+postContent.addEventListener('input', buttonEnable, false);
+postContent.addEventListener('blur', stopSave, false);
+
+
+
+// INITIAL PAGE LOAD STUFF
 init();
 
 
