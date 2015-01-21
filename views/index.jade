@@ -1,0 +1,22 @@
+extends layout
+
+block content 
+  #wrapper
+      input#postInput(type='text', placeholder='Title')
+      | &#x9;
+      textarea#postTextArea(placeholder='What are you thinking?', rows='10')
+      | &#x9;
+      button#addPostDisabled Add Post
+      | &#x9;
+      #postList
+        article.post
+          h2.postTitle Gosh, More Hipster Stuff!
+          p.postContent Post-ironic seitan actually, 8-bit mlkshk cray stumptown jean shorts pour-over swag. Craft beer Tumblr forage DIY tote bag, jean shorts fixie direct trade bespoke PBR&B. Roof party +1 Williamsburg distillery. 3 wolf moon typewriter migas kogi cray fap, VHS Austin health goth. Distillery Blue Bottle wayfarers PBR&B fanny pack. Bushwick kitsch fingerstache direct trade health goth chambray. Dreamcatcher skateboard put a bird on it, Portland DIY occupy XOXO banh mi Tumblr twee bicycle rights Helvetica.
+        article.post  
+          h2.postTitle Hipster Stuff
+          p.postContent Truffaut Helvetica freegan, lomo ugh Bushwick Portland forage sartorial bespoke taxidermy cray viral. Sartorial chambray Marfa deep v, post-ironic scenester chia roof party hashtag McSweeney's raw denim normcore. Meh pork belly locavore occupy. High Life semiotics YOLO, freegan organic hashtag drinking vinegar bicycle rights try-hard slow-carb listicle. Selfies fap dreamcatcher Blue Bottle. Salvia cred seitan, vegan Austin artisan 90's umami yr aesthetic Shoreditch Thundercats trust fund tofu 3 wolf moon. Hashtag actually sustainable, shabby chic fingerstache kogi meditation heirloom tilde Pinterest umami Banksy.
+      | &#x9;
+      footer
+        a.footer(href='http://sethshober.com/', target='_blank') Seth Shober &copy; sometime in 2015
+
+
